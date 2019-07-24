@@ -14,6 +14,8 @@ namespace TrainingPortal.Models
             Database.EnsureCreated();
         }
 
-        public DbSet<TrainingPortal.Models.Course> Course { get; set; }
+        public DbSet<Course> Course { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }

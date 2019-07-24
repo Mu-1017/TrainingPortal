@@ -33,7 +33,7 @@ namespace TrainingPortal.Controllers
             }
 
             var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CourseId == id);
             if (course == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace TrainingPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("Id,Key,Title,Author,Source,Description,Posted")] Course course)
         {
-            if (id != course.Id)
+            if (id != course.CourseId)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace TrainingPortal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseExists(course.Id))
+                    if (!CourseExists(course.CourseId))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace TrainingPortal.Controllers
             }
 
             var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CourseId == id);
             if (course == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace TrainingPortal.Controllers
 
         private bool CourseExists(long id)
         {
-            return _context.Course.Any(e => e.Id == id);
+            return _context.Course.Any(e => e.CourseId == id);
         }
     }
 }
