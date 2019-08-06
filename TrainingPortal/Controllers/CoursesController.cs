@@ -67,6 +67,13 @@ namespace TrainingPortal.Controllers
         // GET: Courses/Create
         public IActionResult CreateCourse()
         {
+            List<SelectListItem> sources = new List<SelectListItem>();
+
+            _context.Categories.ForEachAsync(x =>
+            {
+                sources.Add(new SelectListItem(x.Title, x.CategoryId.ToString()));
+            });
+            ViewBag.CategoryId = sources;
             return View();
         }
 
@@ -75,7 +82,7 @@ namespace TrainingPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateCourse([Bind("Id,Key,Title,Author,Source,Description,Posted")] Course course)
+        public async Task<IActionResult> CreateCourse([Bind("Id,Key,Title,Author,Source,CategoryId,Description,Posted")] Course course)
         {
             if (ModelState.IsValid)
             {
