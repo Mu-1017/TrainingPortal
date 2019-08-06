@@ -43,7 +43,7 @@ namespace TrainingPortal.Controllers
         }
 
         // GET: Courses/Create
-        public IActionResult Create()
+        public IActionResult CreateCategory()
         {
             return View();
         }
@@ -53,7 +53,29 @@ namespace TrainingPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Key,Title,Author,Source,Description,Posted")] Course course)
+        public async Task<IActionResult> CreateCategory([Bind("Id,Key,Title,Author,Source,Description,Posted")] Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(category);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(category);
+        }
+
+        // GET: Courses/Create
+        public IActionResult CreateCourse()
+        {
+            return View();
+        }
+
+        // POST: Courses/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateCourse([Bind("Id,Key,Title,Author,Source,Description,Posted")] Course course)
         {
             if (ModelState.IsValid)
             {
