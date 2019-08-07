@@ -21,7 +21,7 @@ namespace TrainingPortal.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Course.ToListAsync());
+            return View(await _context.Categories.ToListAsync());
         }
 
         // GET: Courses/Details/5
@@ -65,15 +65,9 @@ namespace TrainingPortal.Controllers
         }
 
         // GET: Courses/Create
-        public IActionResult CreateCourse()
+        public IActionResult CreateCourse(long id)
         {
-            List<SelectListItem> sources = new List<SelectListItem>();
-
-            _context.Categories.ForEachAsync(x =>
-            {
-                sources.Add(new SelectListItem(x.Title, x.CategoryId.ToString()));
-            });
-            ViewBag.CategoryId = sources;
+            ViewBag.CategoryId = id;
             return View();
         }
 

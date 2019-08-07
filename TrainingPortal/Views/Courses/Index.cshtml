@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingPortal.Models.Course>
+﻿@model IEnumerable<TrainingPortal.Models.Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,51 +10,57 @@
     <a asp-action="CreateCategory">Create New Category</a>
     <a asp-action="CreateCourse">Create New Course</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Source)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Posted)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Source)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Posted)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
-            </td>
-        </tr>
+
+@foreach (var item in Model)
+{
+    <a asp-action="CreateCourse" asp-route-id="@item.CategoryId">@item.Title</a>
 }
-    </tbody>
-</table>
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Source)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posted)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Source)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Posted)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
