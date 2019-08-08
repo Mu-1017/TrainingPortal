@@ -1,0 +1,23 @@
+﻿@model IEnumerable<TrainingPortal.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@foreach (var item in Model)
+{
+    <p>@item.Title</p>
+    <p>@item.Description</p>
+    <a asp-controller="Courses" asp-action="Index" asp-route-id="@item.CategoryId">Courses</a>
+    @*<td>
+            <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+        </td>*@
+}

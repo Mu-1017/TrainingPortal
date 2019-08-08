@@ -9,71 +9,45 @@ using TrainingPortal.Models;
 
 namespace TrainingPortal.Controllers
 {
-    public class CoursesController : Controller
+    public class CategoriesController : Controller
     {
         private readonly TrainingDataContext _context;
 
-        public CoursesController(TrainingDataContext context)
+        public CategoriesController(TrainingDataContext context)
         {
             _context = context;
         }
 
-        // GET: Courses
-        public async Task<IActionResult> Index(long? id)
+        // GET: Categories
+        public async Task<IActionResult> Index()
         {
-         if (id == null)
-            {
-                return NotFound();
-            }
-
-            ViewBag.Category = _context.Categories.FirstOrDefault(x=>x.CategoryId == id);
-
-            return View(await _context.Course.Where(x=>x.CategoryId == id).ToListAsync());
+            return View(await _context.Categories.ToListAsync());
         }
 
-        // GET: Courses/Details/5
-        public async Task<IActionResult> Details(long? id)
+
+        // GET: Categories/Create
+        public IActionResult Create()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.CourseId == id);
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            return View(course);
-        }
-
-        // GET: Courses/Create
-        public IActionResult Create(long id)
-        {
-            ViewBag.CategoryId = id;
             return View();
         }
 
-        // POST: Courses/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Key,Title,Author,Source,CategoryId,Description,Posted")] Course course)
+        public async Task<IActionResult> Create([Bind("CategoryId,Title,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                course.CategoryId = ViewBag.CategoryId;
-                _context.Add(course);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(course);
+            return View(category);
         }
 
-        // GET: Courses/Edit/5
+        // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -81,22 +55,22 @@ namespace TrainingPortal.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course.FindAsync(id);
-            if (course == null)
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(course);
+            return View(category);
         }
 
-        // POST: Courses/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Key,Title,Author,Source,Description,Posted")] Course course)
+        public async Task<IActionResult> Edit(long id, [Bind("CategoryId,Title,Description")] Category category)
         {
-            if (id != course.CourseId)
+            if (id != category.CategoryId)
             {
                 return NotFound();
             }
@@ -105,12 +79,12 @@ namespace TrainingPortal.Controllers
             {
                 try
                 {
-                    _context.Update(course);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseExists(course.CourseId))
+                    if (!CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -121,10 +95,10 @@ namespace TrainingPortal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(course);
+            return View(category);
         }
 
-        // GET: Courses/Delete/5
+        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -132,30 +106,30 @@ namespace TrainingPortal.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.CourseId == id);
-            if (course == null)
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return View(course);
+            return View(category);
         }
 
-        // POST: Courses/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var course = await _context.Course.FindAsync(id);
-            _context.Course.Remove(course);
+            var category = await _context.Categories.FindAsync(id);
+            _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseExists(long id)
+        private bool CategoryExists(long id)
         {
-            return _context.Course.Any(e => e.CourseId == id);
+            return _context.Categories.Any(e => e.CategoryId == id);
         }
     }
 }
