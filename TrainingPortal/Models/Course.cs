@@ -17,6 +17,8 @@ namespace TrainingPortal.Models
         public string Source { get; set; }
         public long CategoryId { get; set; }
         public string Description { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime Posted { get; set; }
     }
 }

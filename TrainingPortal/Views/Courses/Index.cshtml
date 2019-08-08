@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<a asp-action="Create">Create New</a>
+<a asp-action="Create" asp-route-id="@ViewBag.Category.CategoryId">Create New</a>
 
 <table class="table">
     <thead>

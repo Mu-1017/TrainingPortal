@@ -26,7 +26,7 @@ namespace TrainingPortal.Controllers
                 return NotFound();
             }
 
-            ViewBag.Category = _context.Categories.FirstOrDefault(x=>x.CategoryId == id);
+            ViewBag.Category = _context.Categories.FirstOrDefault(x => x.CategoryId == id);
 
             return View(await _context.Course.Where(x=>x.CategoryId == id).ToListAsync());
         }
@@ -52,7 +52,12 @@ namespace TrainingPortal.Controllers
         // GET: Courses/Create
         public IActionResult Create(long id)
         {
-            ViewBag.CategoryId = id;
+            var category = _context.Categories.FirstOrDefault(x => x.CategoryId == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Category = category;
             return View();
         }
 
@@ -65,10 +70,9 @@ namespace TrainingPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                course.CategoryId = ViewBag.CategoryId;
                 _context.Add(course);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { id = course.CategoryId });
             }
             return View(course);
         }
@@ -119,7 +123,7 @@ namespace TrainingPortal.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { id = course.CategoryId });
             }
             return View(course);
         }
@@ -150,7 +154,7 @@ namespace TrainingPortal.Controllers
             var course = await _context.Course.FindAsync(id);
             _context.Course.Remove(course);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { id = course.CategoryId });
         }
 
         private bool CourseExists(long id)

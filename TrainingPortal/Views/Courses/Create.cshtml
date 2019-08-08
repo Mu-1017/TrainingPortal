@@ -1,6 +1,7 @@
 ﻿@model TrainingPortal.Models.Course
 
-<h4>Course</h4>
+<h4>Course -- @ViewBag.Category.Title</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,8 +23,7 @@
                 <span asp-validation-for="Source" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>ok
-                <input asp-for="CategoryId" class="form-control" readonly value="@ViewBag.Category.CategoryId" />
+                <input asp-for="CategoryId" class="form-control" hidden value="@ViewBag.Category.CategoryId" />
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Posted" class="control-label"></label>
-                <input asp-for="Posted" class="form-control" />
+                <input type="date" asp-for="Posted"  value="2000-01-01" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
