@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using TrainingPortal.Models;
 
 namespace TrainingPortal.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly TrainingDataContext _context;
@@ -19,6 +21,7 @@ namespace TrainingPortal.Controllers
         }
 
         // GET: Courses
+        [AllowAnonymous]
         public async Task<IActionResult> Index(long? id)
         {
          if (id == null)

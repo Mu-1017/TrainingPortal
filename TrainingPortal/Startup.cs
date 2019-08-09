@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using TrainingPortal.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace TrainingPortal
 {
@@ -37,6 +38,9 @@ namespace TrainingPortal
 
             services.AddDbContext<TrainingDataContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("TrainingDataContext")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<TrainingDataContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +57,8 @@ namespace TrainingPortal
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
