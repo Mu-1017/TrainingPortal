@@ -1,0 +1,17 @@
+﻿@page "{id?}"
+@model TrainingPortal.Pages.Team.MemberModel
+@{
+    ViewData["Title"] = "Member";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>@Model.CurrentMember?.Name</h3>
+    <p>@Model.CurrentMember?.Title</p>
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger" asp-page-handler="Delete">Delete Member</button>
+</form>
+<a asp-page="/Team/Team">Back To Team</a>
+

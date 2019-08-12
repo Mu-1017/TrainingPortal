@@ -41,6 +41,8 @@ namespace TrainingPortal
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<TrainingDataContext>();
+
+            services.AddSingleton<ITeamManager, TeamManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

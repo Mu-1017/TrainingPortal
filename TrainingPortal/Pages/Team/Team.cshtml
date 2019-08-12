@@ -1,0 +1,18 @@
+﻿@page
+@model TrainingPortal.Pages.TeamModel
+@{
+    ViewData["Title"] = "Team";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var member in Manager.GetAll().ToArray())
+{
+    <h4>
+        <a asp-area="" asp-page="/Team/Member" asp-route-id="@member.Id">@member.Name</a>
+    </h4>
+}
+
+<a class="btn btn-info" asp-page="/Team/AddMember">Add Team Member</a>
+
+
+
