@@ -7,7 +7,8 @@
 
 <div class="container">
     <div class="row col-lg-10">
-        <a class="btn btn-info" asp-page="/Team/AddMember">Add Team Member</a>
+        
+        <a class="btn btn-info" asp-page="/Team/AddMember"><span class="glyphicon glyphicon-pencil"></span>Add</a>
     </div>
 
     <br />
@@ -21,10 +22,15 @@
             </div>
 
             <div class="col-8">
-                <h4>@member.Name</h4>
-                <span>@member.Title</span>
+                <h4>@member.Name <a title="Edit" asp-area="" asp-page="/Team/EditMember" asp-route-id="@member.Id">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a></h4>
+
+                <span style="color:#747474">@member.Title</span>
+                <br />
                 <p>@member.Description</p>
-                <a asp-area="" asp-page="/Team/EditMember" asp-route-id="@member.Id">Edit</a>
+
+                
             </div>
         </div>
 
