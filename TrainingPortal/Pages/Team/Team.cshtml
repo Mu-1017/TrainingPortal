@@ -5,18 +5,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var member in Manager.GetAll().ToArray())
-{
-<div>
-    <h4>@member.Name</h4>
-    <h4>@member.Title</h4>
-    <p>@member.Description</p>
-    <img class="img img-thumbnail" src="@member.GetInlineImageSrc()" />
-    <a asp-area="" asp-page="/Team/EditMember" asp-route-id="@member.Id">Edit</a>
-</div>
-}
+<div class="container">
+    <div class="row col-lg-10">
+        <a class="btn btn-info" asp-page="/Team/AddMember">Add Team Member</a>
+    </div>
 
-<a class="btn btn-info" asp-page="/Team/AddMember">Add Team Member</a>
+    <br />
+    <br />
+
+    @foreach (var member in Manager.GetAll().ToArray())
+    {
+        <div class="row col-lg-10">
+            <div class="col-4">
+                <img class="profile-img img img-thumbnail" src="@member.GetInlineImageSrc()" />
+            </div>
+
+            <div class="col-8">
+                <h4>@member.Name</h4>
+                <span>@member.Title</span>
+                <p>@member.Description</p>
+                <a asp-area="" asp-page="/Team/EditMember" asp-route-id="@member.Id">Edit</a>
+            </div>
+        </div>
+
+        <hr />
+    }
+    </div>
+
 
 
 
