@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TrainingPortal.Models;
@@ -17,6 +18,10 @@ namespace TrainingPortal.Pages.Team
 
         [BindProperty]
         public Member CurrentMember { get; set; }
+
+        [BindProperty]
+        public IFormFile Image { get; set; }
+
 
         public EditMemberModel([FromServices]ITeamManager manager)
         {
@@ -38,6 +43,18 @@ namespace TrainingPortal.Pages.Team
             member.Name = CurrentMember.Name;
             member.Title = CurrentMember.Title;
             member.Description = CurrentMember.Description;
+
+            if (Image != null)
+            {
+                using (var stream = new System.IO.MemoryStream())
+                {
+                    Image.CopyTo(stream);
+
+                    member.Image = stream.ToArray();
+                    member.ImageContentType = Image.ContentType;
+                }
+            }
+
             _teamManage.Save(member);
 
             return RedirectToPage("/Team/Team");

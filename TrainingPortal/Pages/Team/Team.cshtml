@@ -11,6 +11,7 @@
     <h4>@member.Name</h4>
     <h4>@member.Title</h4>
     <p>@member.Description</p>
+    <img class="img img-thumbnail" src="@member.GetInlineImageSrc()" />
     <a asp-area="" asp-page="/Team/EditMember" asp-route-id="@member.Id">Edit</a>
 </div>
 }
