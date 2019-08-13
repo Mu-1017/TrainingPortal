@@ -34,24 +34,6 @@ namespace TrainingPortal.Controllers
             return View(await _context.Course.Where(x=>x.CategoryId == id).ToListAsync());
         }
 
-        // GET: Courses/Details/5
-        public async Task<IActionResult> Details(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var course = await _context.Course
-                .FirstOrDefaultAsync(m => m.CourseId == id);
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            return View(course);
-        }
-
         // GET: Courses/Create
         public IActionResult Create(long id)
         {
