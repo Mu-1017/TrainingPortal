@@ -8,7 +8,7 @@ using TrainingPortal.Models;
 
 namespace TrainingPortal.Pages.Team
 {
-    public class MemberModel : PageModel
+    public class EditMemberModel : PageModel
     {
         public readonly ITeamManager _teamManage;
 
@@ -18,13 +18,29 @@ namespace TrainingPortal.Pages.Team
         [BindProperty]
         public Member CurrentMember { get; set; }
 
-        public MemberModel([FromServices]ITeamManager manager)
+        public EditMemberModel([FromServices]ITeamManager manager)
         {
             _teamManage = manager;
         }
         public void OnGet()
         {
             CurrentMember = Id == null? new Member(): _teamManage.Find(Id.Value);
+        }
+
+        public IActionResult OnPost()
+        {
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            var member = _teamManage.Find(Id.Value);
+            member.Name = CurrentMember.Name;
+            member.Title = CurrentMember.Title;
+            member.Description = CurrentMember.Description;
+            _teamManage.Save(member);
+
+            return RedirectToPage("/Team/Team");
         }
 
         public IActionResult OnPostDelete()

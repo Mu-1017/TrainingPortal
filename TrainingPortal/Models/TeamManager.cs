@@ -14,10 +14,10 @@ namespace TrainingPortal.Models
         {
             _members = new List<Member>
             {
-                new Member(){Id = 0, Name = "Jonh Doe", Title="Scrum Master" },
-                new Member(){Id = 1, Name = "Jane Doe", Title="Product Owner" },
-                new Member(){Id = 2, Name = "Mike", Title="Senior Developer" },
-                new Member(){Id = 3, Name = "Susan", Title="Developer" }
+                new Member(){Id = DateTime.Now.ToFileTime(), Name = "Jonh Doe", Title="Scrum Master", Description="Some dummy description here" },
+                new Member(){Id = DateTime.Now.ToFileTime(), Name = "Jane Doe", Title="Product Owner", Description="I am who I am" },
+                new Member(){Id = DateTime.Now.ToFileTime(), Name = "Mike", Title="Senior Developer", Description="I got nothing to say" },
+                new Member(){Id = DateTime.Now.ToFileTime(), Name = "Susan", Title="Developer", Description="What you say is not what it is" }
             };
         }
         public void Delete(long id)
@@ -42,7 +42,17 @@ namespace TrainingPortal.Models
 
         public void Save(Member member)
         {
-            member.Id = _members.Count;
+            if(_members.Contains(member))
+            {
+                //Existing Item
+                _members.Remove(member);
+            }
+            else
+            {
+                //New Item
+                member.Id = DateTime.Now.ToFileTime();
+            }
+
             _members.Add(member);
         }
     }

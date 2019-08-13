@@ -34,8 +34,12 @@ namespace TrainingPortal
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddRazorPagesOptions(options=> {
+                    options.Conventions.AuthorizeFolder("/Team");
+                    options.Conventions.AllowAnonymousToPage("/Team/Team");
+                });
+            
             services.AddDbContext<TrainingDataContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("TrainingDataContext")));
 

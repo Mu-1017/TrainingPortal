@@ -1,0 +1,37 @@
+﻿@page "{id?}"
+@model TrainingPortal.Pages.Team.EditMemberModel
+@{
+    ViewData["Title"] = "Member";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="CurrentMember.Id" hidden/>
+            <div class="form-group">
+                <label asp-for="CurrentMember.Name" class="control-label"></label>
+                <input asp-for="CurrentMember.Name" class="form-control" />
+                <span asp-validation-for="CurrentMember.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentMember.Title" class="control-label"></label>
+                <input asp-for="CurrentMember.Title" class="form-control" />
+                <span asp-validation-for="CurrentMember.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentMember.Description" class="control-label"></label>
+                <input asp-for="CurrentMember.Description" class="form-control" />
+                <span asp-validation-for="CurrentMember.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit"  class="btn btn-primary" >Save</button>
+                <button type="submit" class="btn btn-danger" asp-page-handler="Delete">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<a asp-page="/Team/Team">Back To Team</a>
+
