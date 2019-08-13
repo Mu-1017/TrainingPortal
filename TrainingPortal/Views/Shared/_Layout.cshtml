@@ -46,10 +46,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <p>@User.Identity.Name</p>
-                        <form method="post" asp-controller="Account" asp-action="Logout">
-                            <input type="submit" value="Logout" />
-                        </form>
+                        <li>
+                            <form method="post" asp-controller="Account" asp-action="Logout">
+                                <span>@User.Identity.Name</span>
+                                <button type="submit" class="btn btn-link"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+                            </form>
+                        </li>
                     }
                     else
                     {

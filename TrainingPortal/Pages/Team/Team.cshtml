@@ -6,9 +6,10 @@
 }
 
 <div class="container">
-    <div class="row col-lg-10">
+    <div class="col-lg-10 d-flex flex-row-reverse" >
         
-        <a class="btn btn-info" asp-page="/Team/AddMember"><span class="glyphicon glyphicon-pencil"></span>Add</a>
+        <a class="btn btn-info" asp-page="/Team/AddMember">
+        <span class="glyphicon glyphicon-plus"></span> Add New Member</a>
     </div>
 
     <br />
@@ -18,7 +19,15 @@
     {
         <div class="row col-lg-10">
             <div class="col-4">
-                <img class="profile-img img img-thumbnail" src="@member.GetInlineImageSrc()" />
+                @if (string.IsNullOrEmpty(member.GetInlineImageSrc()))
+                {
+                    <img class="profile-img img img-thumbnail" src="~/img/profile.png" alt="Profile" />
+                }
+                else
+                {
+                    <img class="profile-img img img-thumbnail" src="@member.GetInlineImageSrc()" alt="Profile" />
+                }
+
             </div>
 
             <div class="col-8">
@@ -28,13 +37,11 @@
 
                 <span style="color:#747474">@member.Title</span>
                 <br />
-                <p>@member.Description</p>
-
-                
+                <p>@member.Description</p>   
             </div>
         </div>
 
-        <hr />
+        <hr class="row col-lg-10"/>
     }
     </div>
 
