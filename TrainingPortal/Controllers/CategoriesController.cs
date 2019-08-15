@@ -62,6 +62,7 @@ namespace TrainingPortal.Controllers
             {
                 return NotFound();
             }
+            
             return View(category);
         }
 
@@ -114,6 +115,8 @@ namespace TrainingPortal.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.CourseCount = await _context.Course.CountAsync(x => x.CategoryId == id);
 
             return View(category);
         }

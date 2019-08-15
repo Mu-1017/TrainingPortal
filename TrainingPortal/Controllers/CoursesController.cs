@@ -31,7 +31,8 @@ namespace TrainingPortal.Controllers
 
             ViewBag.Category = _context.Categories.FirstOrDefault(x => x.CategoryId == id);
 
-            return View(await _context.Course.Where(x=>x.CategoryId == id).ToListAsync());
+            List<Course> model = await _context.Course?.Where(x => x.CategoryId == id)?.ToListAsync();
+            return base.View(model);
         }
 
         // GET: Courses/Create
