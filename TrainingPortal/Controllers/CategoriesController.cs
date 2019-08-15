@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using TrainingPortal.Models;
 
 namespace TrainingPortal.Controllers
@@ -14,9 +16,13 @@ namespace TrainingPortal.Controllers
     public class CategoriesController : Controller
     {
         private readonly TrainingDataContext _context;
+        private readonly IConfiguration _configuration;
+        private readonly ILogger _logger;
 
-        public CategoriesController(TrainingDataContext context)
+        public CategoriesController(ILogger<CategoriesController> logger, IConfiguration configuration, TrainingDataContext context)
         {
+            _logger = logger;
+            _configuration = configuration;
             _context = context;
         }
 
@@ -24,6 +30,9 @@ namespace TrainingPortal.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("123" + _configuration.GetConnectionString("DefaultConnection"));
+            _logger.LogInformation("123 Can connect:" + _context.Database.CanConnect().ToString());
+            _logger.LogInformation("123 IsSqlServer" + _context.Database.IsSqlServer());
             return View(await _context.Categories.ToListAsync());
         }
 

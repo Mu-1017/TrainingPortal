@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using TrainingPortal.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 namespace TrainingPortal
 {
@@ -39,9 +40,12 @@ namespace TrainingPortal
                     options.Conventions.AuthorizeFolder("/Team");
                     options.Conventions.AllowAnonymousToPage("/Team/Team");
                 });
-            
+
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<TrainingDataContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("TrainingDataContext")));
+                    options.UseSqlServer(connectionString));
+
+            Console.WriteLine(connectionString);
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<TrainingDataContext>();
