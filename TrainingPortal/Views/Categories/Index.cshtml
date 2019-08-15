@@ -4,17 +4,36 @@
     ViewData["Title"] = "Features";
 }
 
-<h1>Index</h1>
+<div class="row justify-content-md-center">
+    <h2>Our Features</h2>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 
-@foreach (var item in Model)
-{
-    <p>@item.Title</p>
-    <p>@item.Description</p>
-    <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a>
-    <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-    <a asp-controller="Courses" asp-action="Index" asp-route-id="@item.CategoryId">View Courses</a>
-}
+<div class="d-flex flex-wrap">
+
+    @foreach (var item in Model)
+    {
+        <div class="border col-4">
+            <p>
+                @item.Title
+                <a asp-action="Edit" asp-route-id="@item.CategoryId">
+                    <span title="Edit" class="glyphicon glyphicon-pencil" />
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.CategoryId">
+                    <span title="Delete" class="glyphicon glyphicon-trash" />
+                </a>
+            </p>
+
+            <p>@item.Description</p>
+
+            <a asp-controller="Courses" asp-action="Index" asp-route-id="@item.CategoryId">View Courses</a>
+        </div>
+    }
+
+    <div class="col-4 align-self-center">
+        <a asp-action="Create" class="btn-link">
+            <span style="font-size:30px;" title="Add new feature" class="icon glyphicon glyphicon-plus-sign" />
+        </a>
+    </div>
+
+</div>
