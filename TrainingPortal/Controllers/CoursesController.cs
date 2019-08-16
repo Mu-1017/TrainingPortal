@@ -84,12 +84,8 @@ namespace TrainingPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Key,Title,Author,Source,Description,Posted")] Course course)
+        public async Task<IActionResult> Edit([Bind("CourseId,Title,Author,Source,CategoryId,Description,Posted")] Course course)
         {
-            if (id != course.CourseId)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
@@ -109,9 +105,8 @@ namespace TrainingPortal.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), new { id = course.CategoryId });
             }
-            return View(course);
+            return RedirectToAction(nameof(Index), new { id = course.CategoryId });
         }
 
         // GET: Courses/Delete/5
