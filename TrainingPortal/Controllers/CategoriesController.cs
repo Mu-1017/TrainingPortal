@@ -30,9 +30,6 @@ namespace TrainingPortal.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            _logger.LogInformation("123" + _configuration.GetConnectionString("DefaultConnection"));
-            _logger.LogInformation("123 Can connect:" + _context.Database.CanConnect().ToString());
-            _logger.LogInformation("123 IsSqlServer" + _context.Database.IsSqlServer());
             return View(await _context.Categories.ToListAsync());
         }
 

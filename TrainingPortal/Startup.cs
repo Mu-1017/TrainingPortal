@@ -41,7 +41,7 @@ namespace TrainingPortal
                     options.Conventions.AllowAnonymousToPage("/Team/Team");
                 });
 
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = Configuration.GetConnectionString("TrainingDataContext");
             services.AddDbContext<TrainingDataContext>(options =>
                     options.UseSqlServer(connectionString));
 
