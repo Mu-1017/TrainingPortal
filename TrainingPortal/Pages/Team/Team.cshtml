@@ -21,11 +21,11 @@
             <div class="col-4">
                 @if (string.IsNullOrEmpty(member.GetInlineImageSrc()))
                 {
-                    <img class="profile-img img img-thumbnail" src="~/img/profile.png" alt="Profile" />
+                    <img class="img img-thumbnail" src="~/img/profile.png" alt="Profile" />
                 }
                 else
                 {
-                    <img class="profile-img img img-thumbnail" src="@member.GetInlineImageSrc()" alt="Profile" />
+                    <img class="img img-thumbnail" src="@member.GetInlineImageSrc()" alt="Profile" />
                 }
 
             </div>

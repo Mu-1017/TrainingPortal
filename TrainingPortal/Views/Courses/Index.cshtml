@@ -39,16 +39,21 @@
             <div>
                 @{
                     var desc = item.Description;
-                    if(desc.Length > 120)
+                    var readmore = desc.Length > 120;
+                    if (readmore)
                     {
                         desc = item.Description.Substring(0, 120) + "...";
                     }
                 }
                 <p>@desc</p>
-                <button class="btn btn-link" data-toggle="popover" title="Details" data-trigger="focus"
-                        data-content="@item.Description">
-                    Read More
-                </button>
+                @if (readmore)
+                {
+                    <button class="btn btn-link" data-toggle="popover" title="Details" data-trigger="focus"
+                            data-content="@item.Description">
+                        Read More
+                    </button>
+                }
+
             </div>
 
         </div>
