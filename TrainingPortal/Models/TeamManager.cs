@@ -74,15 +74,13 @@ namespace TrainingPortal.Models
             if (_members.Contains(member))
             {
                 //Existing Item
-                _members.Remove(member);
             }
             else
             {
                 //New Item
                 member.Id = DateTime.Now.ToFileTime();
+                _members.Add(member);
             }
-
-            _members.Add(member);
 
             SaveToJsonFile(_members);
         }

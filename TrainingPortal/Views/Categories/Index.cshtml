@@ -4,7 +4,7 @@
     ViewData["Title"] = "Features";
 }
 
-<div class="row justify-content-md-center">
+<div class="mb-4 row justify-content-md-center">
     <h2>Our Features</h2>
 </div>
 
@@ -30,7 +30,7 @@
             <br>
             <p class="text-break " style="">@item.Description</p>
 
-            <div class="mt-auto align-self-end">
+            <div class="mt-auto mb-4 align-self-end">
                 <a asp-controller="Courses" asp-action="Index" asp-route-id="@item.CategoryId">View Courses</a>
             </div>
         </div>

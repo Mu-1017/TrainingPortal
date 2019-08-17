@@ -19,6 +19,8 @@ namespace TrainingPortal.Models
         [Required]
         public string Source { get; set; }
         public long CategoryId { get; set; }
+
+        [MaxLength(500)]
         public string Description { get; set; }
 
         [DataType(DataType.Date)]
