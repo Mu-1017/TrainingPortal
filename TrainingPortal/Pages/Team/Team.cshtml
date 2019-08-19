@@ -18,7 +18,7 @@
     @foreach (var member in Manager.GetAll().ToArray())
     {
         <div class="row col-lg-10">
-            <div class="col-4">
+            <div class="col-lg-4 col-md-6 col-sm-12">
                 @if (string.IsNullOrEmpty(member.GetInlineImageSrc()))
                 {
                     <img class="img img-thumbnail" src="~/img/profile.png" alt="Profile" />
@@ -30,7 +30,7 @@
 
             </div>
 
-            <div class="col-8">
+            <div class="col-lg-8 col-md-6 col-sm-12">
                 <h4>@member.Name <a title="Edit" asp-area="" asp-page="/Team/EditMember" asp-route-id="@member.Id">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a></h4>

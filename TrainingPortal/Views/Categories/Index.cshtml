@@ -4,7 +4,7 @@
     ViewData["Title"] = "Features";
 }
 
-<div class="mb-4 row justify-content-md-center">
+<div class="mb-4 row justify-content-center">
     <h2>Our Features</h2>
 </div>
 
@@ -13,7 +13,7 @@
 
     @foreach (var item in Model)
     {
-        <div class="d-flex flex-column border col-4" style="min-height: 300px;">
+        <div class="d-flex flex-column border col-lg-4 col-md-6 col-sm-12" style="min-height: 300px;">
             <div class="d-flex  justify-content-between" style="width: 100%;">
                 <div class="d-flex">
                     <h4>@item.Title | <a asp-action="Edit" asp-route-id="@item.CategoryId">

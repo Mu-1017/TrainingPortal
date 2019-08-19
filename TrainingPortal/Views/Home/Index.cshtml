@@ -3,8 +3,16 @@
 }
 
 <div class="row d-flex justify-content-center">
-    <div class="col-lg-10 mt-5">
-        <img class="img-fluid bg-image" src="~/img/sivantos-singapore-office.jpg" />
+    <div class="d-flex col-lg-12 mt-5 justify-content-center">
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+            <img class="img-responsive bg-image" src="~/img/sivantos-singapore-office-sm.jpg" />    <!--Mobile-->
+        </div>
+        <div class="col-md-12 hidden-xs hidden-lg">
+            <img class="img-responsive bg-image" src="~/img/sivantos-singapore-office-md.jpg" />   <!--Tab-->
+        </div>
+        <div class="hidden-xs hidden-sm hidden-md col-lg-12">
+            <img class="img-responsive bg-image" src="~/img/sivantos-singapore-office.jpg" />  <!--Desktop-->
+        </div>
 
         <div class="bg-text">
             <h1>We are the Mozart</h1>

@@ -17,7 +17,7 @@
 <div class="d-flex flex-wrap">
     @foreach (var item in Model)
     {
-        <div class="p-1 d-flex flex-column col-4" style="min-height: 300px;">
+        <div class="p-1 d-flex flex-column col-lg-4 col-md-6 col-sm-12" style="min-height: 300px;">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe width="560" height="315" src="@item.GetEmbedSource()" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
