@@ -14,7 +14,6 @@ namespace TrainingPortal.Models
 
         public TeamManager()
         {
-
             LoadTeamMembersFromJsonFile();
         }
 
